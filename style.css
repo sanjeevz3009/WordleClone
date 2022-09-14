@@ -49,3 +49,22 @@ body {
 .keyboardContainer button:nth-child(28) {
     width: 68px;
 }
+
+.tileContainer div {
+    display: flex;
+}
+
+.tileContainer .tile {
+    width: 62px;
+    height: 62px;
+    border: 2px solid red;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+}
+
+.alertContainer {
+    height: 30px;
+}
