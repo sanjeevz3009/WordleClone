@@ -2,7 +2,20 @@ const tileContainer = document.querySelector(".tileContainer");
 const keyboardContainer = document.querySelector(".keyboardContainer");
 const alertContainer = document.querySelector(".alertContainer");
 
-const wordOfTheDay = "SANJI"
+let wordOfTheDay;
+
+const getWordle = () => {
+    fetch("http://localhost:8002/word")
+        .then(response => response.json())
+        .then(json => {
+            console.log(json);
+            wordOfTheDay = json.toUpperCase();
+        })
+        .catch(error => console.log(error));
+
+}
+
+getWordle();
 
 const keys = [
     'Q',
@@ -107,8 +120,16 @@ const deleteLetter = () => {
 
 const checkRow = () => {
     const guess = tiles[currentRow].join('');
+    console.log(guess);
 
     if (currentTile > 4) {
+        fetch(`http://localhost:8002/check/?word=${guess}`)
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+            });
+
+
         console.log(`Guessed word is ${guess} and worldle today is ${wordOfTheDay}`);
         flipTile();
         if (wordOfTheDay == guess) {
